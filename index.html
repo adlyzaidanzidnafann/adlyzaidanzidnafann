@@ -6,7 +6,6 @@
 
     <title>Accounting Adventure</title>
 
-    <!-- Bootstrap CDN -->
     <link
         href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
         rel="stylesheet"
@@ -15,68 +14,84 @@
     <style>
         * {
             box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
         }
 
+        html,
         body {
             margin: 0;
-            background: #10182f;
-            font-family: Arial, sans-serif;
+            padding: 0;
+            width: 100%;
+            height: 100%;
             overflow: hidden;
+            font-family: Arial, sans-serif;
+            background: #10182f;
         }
 
-        /* HEADER */
-        .topbar {
-            height: 70px;
-            background: #182344;
+        /* ================= HEADER ================= */
+
+        .header {
+            height: 60px;
+            background: #111b3a;
             color: white;
             display: flex;
             align-items: center;
             justify-content: space-around;
+            position: relative;
+            z-index: 100;
+        }
+
+        .badge-game {
+            background: #243563;
+            padding: 8px 12px;
+            border-radius: 10px;
+            font-size: 13px;
             font-weight: bold;
-            position: relative;
-            z-index: 10;
         }
 
-        .stat {
-            background: #27345e;
-            padding: 8px 14px;
-            border-radius: 12px;
-        }
+        /* ================= GAME ================= */
 
-        /* GAME */
         #game {
-            width: 100%;
-            height: calc(100vh - 70px);
             position: relative;
+            width: 100%;
+            height: calc(100vh - 60px);
+            height: calc(100dvh - 60px);
+            min-height: 500px;
             overflow: hidden;
+
             background:
                 linear-gradient(
-                    #73c8ff 0%,
-                    #bcecff 65%,
-                    #d8f7ff 100%
+                    to bottom,
+                    #63c4f2 0%,
+                    #bcecff 70%,
+                    #e2f8ff 100%
                 );
+
+            touch-action: none;
         }
 
-        /* MATAHARI */
+        /* ================= SUN ================= */
+
         .sun {
             position: absolute;
-            width: 70px;
-            height: 70px;
-            background: #ffd43b;
+            width: 65px;
+            height: 65px;
             border-radius: 50%;
-            right: 10%;
-            top: 8%;
-            box-shadow: 0 0 35px #ffd43b;
+            background: #ffd43b;
+            right: 12%;
+            top: 10%;
+            box-shadow: 0 0 30px rgba(255,212,59,.7);
         }
 
-        /* AWAN */
+        /* ================= CLOUD ================= */
+
         .cloud {
             position: absolute;
-            width: 100px;
-            height: 35px;
+            width: 90px;
+            height: 30px;
             background: white;
             border-radius: 30px;
-            opacity: 0.85;
+            opacity: .85;
         }
 
         .cloud::before,
@@ -88,734 +103,30 @@
         }
 
         .cloud::before {
-            width: 45px;
-            height: 45px;
-            left: 15px;
-            top: -20px;
+            width: 40px;
+            height: 40px;
+            left: 12px;
+            top: -18px;
         }
 
         .cloud::after {
-            width: 55px;
-            height: 55px;
-            right: 10px;
-            top: -25px;
+            width: 48px;
+            height: 48px;
+            right: 8px;
+            top: -22px;
         }
 
         .cloud1 {
-            top: 15%;
+            top: 16%;
             left: 10%;
         }
 
         .cloud2 {
-            top: 25%;
-            left: 55%;
+            top: 28%;
+            left: 58%;
         }
 
-        /* TANAH */
+        /* ================= TANAH ================= */
+
         .ground {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 90px;
-            background: #5c3b20;
-            border-top: 15px solid #55a630;
-        }
-
-        /* PLATFORM */
-        .platform {
-            position: absolute;
-            height: 22px;
-            background: #8b5a2b;
-            border-top: 7px solid #55a630;
-            border-radius: 5px;
-        }
-
-        .p1 {
-            width: 150px;
-            bottom: 180px;
-            left: 18%;
-        }
-
-        .p2 {
-            width: 150px;
-            bottom: 280px;
-            left: 48%;
-        }
-
-        .p3 {
-            width: 160px;
-            bottom: 190px;
-            right: 10%;
-        }
-
-        /* PLAYER */
-        #player {
-            position: absolute;
-            width: 42px;
-            height: 48px;
-            background: #ff595e;
-            border-radius: 12px 12px 8px 8px;
-            bottom: 90px;
-            left: 70px;
-            z-index: 5;
-            transition: transform 0.05s;
-        }
-
-        #player::before {
-            content: "🙂";
-            position: absolute;
-            font-size: 27px;
-            left: 7px;
-            top: 5px;
-        }
-
-        /* KAKI */
-        #player::after {
-            content: "";
-            position: absolute;
-            width: 35px;
-            height: 7px;
-            background: #333;
-            bottom: -4px;
-            left: 4px;
-            border-radius: 10px;
-        }
-
-        /* KOIN */
-        .coin {
-            position: absolute;
-            width: 30px;
-            height: 30px;
-            background: #ffd43b;
-            border: 4px solid #f08c00;
-            border-radius: 50%;
-            z-index: 4;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-weight: bold;
-            color: #8d4b00;
-        }
-
-        .coin1 {
-            left: 25%;
-            bottom: 220px;
-        }
-
-        .coin2 {
-            left: 55%;
-            bottom: 320px;
-        }
-
-        .coin3 {
-            right: 18%;
-            bottom: 230px;
-        }
-
-        /* FINISH */
-        #finish {
-            position: absolute;
-            right: 25px;
-            bottom: 90px;
-            font-size: 45px;
-            z-index: 3;
-        }
-
-        /* CONTROLS */
-        .controls {
-            position: absolute;
-            bottom: 20px;
-            left: 20px;
-            right: 20px;
-            display: flex;
-            justify-content: space-between;
-            z-index: 20;
-            pointer-events: none;
-        }
-
-        .control-group {
-            display: flex;
-            gap: 10px;
-        }
-
-        .game-btn {
-            width: 65px;
-            height: 55px;
-            border: none;
-            border-radius: 15px;
-            background: rgba(24, 35, 68, 0.9);
-            color: white;
-            font-size: 25px;
-            font-weight: bold;
-            pointer-events: auto;
-            touch-action: manipulation;
-        }
-
-        .game-btn:active {
-            transform: scale(0.9);
-        }
-
-        /* SOAL */
-        #questionBox {
-            position: absolute;
-            z-index: 30;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 90%;
-            max-width: 430px;
-            background: white;
-            border-radius: 20px;
-            padding: 25px;
-            box-shadow: 0 10px 40px rgba(0,0,0,.3);
-            display: none;
-        }
-
-        #questionBox h4 {
-            color: #182344;
-            font-weight: bold;
-        }
-
-        .answer {
-            width: 100%;
-            margin-top: 10px;
-            padding: 12px;
-            border: none;
-            border-radius: 12px;
-            background: #edf2ff;
-            text-align: left;
-            font-weight: bold;
-        }
-
-        .answer:hover {
-            background: #dbe4ff;
-        }
-
-        #message {
-            position: absolute;
-            top: 90px;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 15;
-            background: white;
-            padding: 10px 20px;
-            border-radius: 15px;
-            font-weight: bold;
-            display: none;
-        }
-    </style>
-</head>
-
-<body>
-
-<!-- HEADER -->
-<div class="topbar">
-
-    <div class="stat">
-        📚 Accounting Adventure
-    </div>
-
-    <div class="stat">
-        ⭐ <span id="score">0</span>
-    </div>
-
-    <div class="stat">
-        ❤️ <span id="life">3</span>
-    </div>
-
-</div>
-
-
-<!-- GAME -->
-<div id="game">
-
-    <div class="sun"></div>
-
-    <div class="cloud cloud1"></div>
-    <div class="cloud cloud2"></div>
-
-    <!-- PESAN -->
-    <div id="message"></div>
-
-    <!-- PLAYER -->
-    <div id="player"></div>
-
-    <!-- COINS -->
-    <div class="coin coin1">Rp</div>
-    <div class="coin coin2">Rp</div>
-    <div class="coin coin3">Rp</div>
-
-    <!-- PLATFORM -->
-    <div class="platform p1"></div>
-    <div class="platform p2"></div>
-    <div class="platform p3"></div>
-
-    <!-- FINISH -->
-    <div id="finish">🏁</div>
-
-    <!-- TANAH -->
-    <div class="ground"></div>
-
-    <!-- QUESTION -->
-    <div id="questionBox">
-
-        <h4>📖 Tantangan Akuntansi</h4>
-
-        <p id="question"></p>
-
-        <div id="answers"></div>
-
-    </div>
-
-
-    <!-- MOBILE CONTROL -->
-    <div class="controls">
-
-        <div class="control-group">
-
-            <button
-                class="game-btn"
-                id="leftBtn">
-                ◀
-            </button>
-
-            <button
-                class="game-btn"
-                id="rightBtn">
-                ▶
-            </button>
-
-        </div>
-
-        <button
-            class="game-btn"
-            id="jumpBtn">
-            ⬆
-        </button>
-
-    </div>
-
-</div>
-
-
-<script>
-
-    /* =========================
-       DATA GAME
-    ========================= */
-
-    let score = 0;
-    let life = 3;
-
-    let playerX = 70;
-    let playerBottom = 90;
-
-    let jumping = false;
-
-    const player = document.getElementById("player");
-    const game = document.getElementById("game");
-
-    const scoreText = document.getElementById("score");
-    const lifeText = document.getElementById("life");
-
-    const questions = [
-
-        {
-            question: "Kas termasuk ke dalam kelompok apa?",
-            answers: [
-                "A. Aset",
-                "B. Utang",
-                "C. Beban",
-                "D. Pendapatan"
-            ],
-            correct: 0
-        },
-
-        {
-            question: "Jika pemilik memasukkan uang ke perusahaan, transaksi tersebut menambah...",
-            answers: [
-                "A. Beban",
-                "B. Modal",
-                "C. Utang",
-                "D. Kerugian"
-            ],
-            correct: 1
-        },
-
-        {
-            question: "Rumus dasar akuntansi adalah...",
-            answers: [
-                "A. Aset = Utang + Modal",
-                "B. Aset = Beban + Pendapatan",
-                "C. Modal = Aset + Utang",
-                "D. Utang = Aset + Modal"
-            ],
-            correct: 0
-        },
-
-        {
-            question: "Pendapatan Rp500.000 dan beban Rp300.000. Berapa laba?",
-            answers: [
-                "A. Rp100.000",
-                "B. Rp200.000",
-                "C. Rp300.000",
-                "D. Rp800.000"
-            ],
-            correct: 1
-        },
-
-        {
-            question: "Pembayaran listrik perusahaan termasuk...",
-            answers: [
-                "A. Aset",
-                "B. Modal",
-                "C. Beban",
-                "D. Pendapatan"
-            ],
-            correct: 2
-        }
-
-    ];
-
-    let currentQuestion = 0;
-
-
-    /* =========================
-       GERAK PEMAIN
-    ========================= */
-
-    function moveLeft() {
-
-        playerX -= 25;
-
-        if (playerX < 0) {
-            playerX = 0;
-        }
-
-        updatePlayer();
-    }
-
-
-    function moveRight() {
-
-        playerX += 25;
-
-        const maxX = game.clientWidth - 55;
-
-        if (playerX > maxX) {
-            playerX = maxX;
-        }
-
-        updatePlayer();
-
-        checkCoins();
-        checkFinish();
-    }
-
-
-    function updatePlayer() {
-
-        player.style.left = playerX + "px";
-        player.style.bottom = playerBottom + "px";
-
-    }
-
-
-    /* =========================
-       LOMPAT
-    ========================= */
-
-    function jump() {
-
-        if (jumping) return;
-
-        jumping = true;
-
-        let start = playerBottom;
-
-        let height = 130;
-
-        let up = true;
-
-        const jumpInterval = setInterval(() => {
-
-            if (up) {
-
-                playerBottom += 10;
-
-                if (playerBottom >= start + height) {
-                    up = false;
-                }
-
-            } else {
-
-                playerBottom -= 10;
-
-                if (playerBottom <= start) {
-
-                    playerBottom = start;
-
-                    clearInterval(jumpInterval);
-
-                    jumping = false;
-                }
-            }
-
-            updatePlayer();
-
-        }, 25);
-    }
-
-
-    /* =========================
-       KEYBOARD
-    ========================= */
-
-    document.addEventListener("keydown", function(event) {
-
-        if (event.key === "ArrowLeft") {
-            moveLeft();
-        }
-
-        if (event.key === "ArrowRight") {
-            moveRight();
-        }
-
-        if (event.key === "ArrowUp" || event.key === " ") {
-            jump();
-        }
-
-    });
-
-
-    /* =========================
-       MOBILE BUTTON
-    ========================= */
-
-    document
-        .getElementById("leftBtn")
-        .addEventListener("click", moveLeft);
-
-    document
-        .getElementById("rightBtn")
-        .addEventListener("click", moveRight);
-
-    document
-        .getElementById("jumpBtn")
-        .addEventListener("click", jump);
-
-
-    /* =========================
-       COIN
-    ========================= */
-
-    function checkCoins() {
-
-        const coins =
-            document.querySelectorAll(".coin");
-
-        coins.forEach(coin => {
-
-            if (coin.style.display === "none") {
-                return;
-            }
-
-            const coinRect =
-                coin.getBoundingClientRect();
-
-            const playerRect =
-                player.getBoundingClientRect();
-
-            if (
-                playerRect.left < coinRect.right &&
-                playerRect.right > coinRect.left &&
-                playerRect.top < coinRect.bottom &&
-                playerRect.bottom > coinRect.top
-            ) {
-
-                coin.style.display = "none";
-
-                score += 10;
-
-                scoreText.innerText = score;
-
-                showMessage("+10 ⭐");
-
-            }
-
-        });
-
-    }
-
-
-    /* =========================
-       FINISH
-    ========================= */
-
-    function checkFinish() {
-
-        const finish =
-            document.getElementById("finish");
-
-        const finishRect =
-            finish.getBoundingClientRect();
-
-        const playerRect =
-            player.getBoundingClientRect();
-
-        if (
-            playerRect.right > finishRect.left &&
-            playerRect.left < finishRect.right &&
-            playerRect.bottom > finishRect.top &&
-            playerRect.top < finishRect.bottom
-        ) {
-
-            showQuestion();
-
-        }
-
-    }
-
-
-    /* =========================
-       SOAL
-    ========================= */
-
-    function showQuestion() {
-
-        const box =
-            document.getElementById("questionBox");
-
-        const question =
-            document.getElementById("question");
-
-        const answers =
-            document.getElementById("answers");
-
-        const data =
-            questions[currentQuestion];
-
-        question.innerText =
-            data.question;
-
-        answers.innerHTML = "";
-
-        data.answers.forEach((answer, index) => {
-
-            const button =
-                document.createElement("button");
-
-            button.className =
-                "answer";
-
-            button.innerText =
-                answer;
-
-            button.onclick =
-                function() {
-
-                    checkAnswer(index);
-
-                };
-
-            answers.appendChild(button);
-
-        });
-
-        box.style.display = "block";
-
-    }
-
-
-    function checkAnswer(answer) {
-
-        const data =
-            questions[currentQuestion];
-
-        if (answer === data.correct) {
-
-            score += 50;
-
-            scoreText.innerText = score;
-
-            showMessage(
-                "🎉 Benar! +50 poin"
-            );
-
-        } else {
-
-            life--;
-
-            lifeText.innerText = life;
-
-            showMessage(
-                "❌ Jawaban salah!"
-            );
-
-            if (life <= 0) {
-
-                alert(
-                    "Game Over! Skor kamu: " + score
-                );
-
-                location.reload();
-
-                return;
-            }
-
-        }
-
-        currentQuestion++;
-
-        if (currentQuestion >= questions.length) {
-
-            setTimeout(() => {
-
-                alert(
-                    "🏆 Kamu menyelesaikan Accounting Adventure!\n\nSkor: "
-                    + score
-                );
-
-                location.reload();
-
-            }, 500);
-
-            return;
-        }
-
-        document
-            .getElementById("questionBox")
-            .style.display = "none";
-
-    }
-
-
-    /* =========================
-       PESAN
-    ========================= */
-
-    function showMessage(text) {
-
-        const message =
-            document.getElementById("message");
-
-        message.innerText = text;
-
-        message.style.display = "block";
-
-        setTimeout(() => {
-
-            message.style.display = "none";
-
-        }, 1200);
-
-    }
-
-
-    updatePlayer();
-
-</script>
-
-</body>
-</html>
+            position: absolute
