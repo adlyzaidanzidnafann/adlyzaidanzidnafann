@@ -4,32 +4,38 @@
 <meta charset="UTF-8">
 
 <meta name="viewport"
-content="width=device-width,
-initial-scale=1.0,
-maximum-scale=1.0,
-user-scalable=no">
+      content="width=device-width,
+               initial-scale=1.0,
+               maximum-scale=1.0,
+               user-scalable=no">
 
 <title>Accounting Jump Adventure</title>
 
 <style>
+
+/* =========================
+   DASAR
+========================= */
 
 * {
     box-sizing: border-box;
     -webkit-tap-highlight-color: transparent;
 }
 
-html, body {
+html,
+body {
     margin: 0;
     padding: 0;
     width: 100%;
     height: 100%;
     overflow: hidden;
+
     font-family: Arial, sans-serif;
+
     touch-action: none;
     user-select: none;
-}
+    -webkit-user-select: none;
 
-body {
     background: #87ceeb;
 }
 
@@ -48,12 +54,12 @@ body {
     overflow: hidden;
 
     background:
-    linear-gradient(
-        #4fc3f7 0%,
-        #dff7ff 65%,
-        #8bc34a 65%,
-        #8bc34a 100%
-    );
+        linear-gradient(
+            #55c7ff 0%,
+            #bceeff 65%,
+            #8bc34a 65%,
+            #8bc34a 100%
+        );
 }
 
 
@@ -69,12 +75,11 @@ body {
     left: 0;
 
     width: 100%;
-    height: 58px;
+    height: 60px;
 
     background: white;
 
     display: flex;
-
     align-items: center;
     justify-content: space-between;
 
@@ -82,46 +87,16 @@ body {
 
     z-index: 100;
 
-    box-shadow: 0 2px 7px rgba(0,0,0,.25);
+    box-shadow: 0 2px 6px rgba(0,0,0,.25);
 }
 
 #title {
-    font-size: 15px;
+    font-size: 16px;
     font-weight: bold;
 }
 
 #status {
-    font-size: 14px;
     font-weight: bold;
-}
-
-
-/* =========================
-   MATERI MINI
-========================= */
-
-#lesson {
-
-    position: absolute;
-
-    top: 70px;
-    left: 50%;
-
-    transform: translateX(-50%);
-
-    background: rgba(255,255,255,.9);
-
-    padding: 7px 12px;
-
-    border-radius: 20px;
-
-    font-size: 12px;
-
-    font-weight: bold;
-
-    z-index: 80;
-
-    text-align: center;
 }
 
 
@@ -133,7 +108,7 @@ body {
 
     position: absolute;
 
-    top: 90px;
+    top: 80px;
     right: 25px;
 
     font-size: 55px;
@@ -154,12 +129,12 @@ body {
 }
 
 .cloud1 {
-    top: 110px;
+    top: 100px;
     left: 30px;
 }
 
 .cloud2 {
-    top: 190px;
+    top: 170px;
     right: 100px;
 }
 
@@ -176,11 +151,11 @@ body {
     height: 58px;
 
     left: 40px;
-    bottom: 90px;
+    bottom: 100px;
 
     background: #e53935;
 
-    border: 3px solid #8e1b1b;
+    border: 3px solid #9b1c1c;
 
     border-radius: 14px;
 
@@ -192,7 +167,7 @@ body {
 
     z-index: 50;
 
-    will-change: left, bottom;
+    transition: none;
 }
 
 
@@ -217,16 +192,16 @@ body {
 
 .platform1 {
 
-    left: 20%;
-    bottom: 190px;
+    left: 22%;
+    bottom: 210px;
 
     width: 130px;
 }
 
 .platform2 {
 
-    left: 50%;
-    bottom: 285px;
+    left: 52%;
+    bottom: 300px;
 
     width: 130px;
 }
@@ -234,7 +209,7 @@ body {
 .platform3 {
 
     left: 78%;
-    bottom: 190px;
+    bottom: 210px;
 
     width: 120px;
 }
@@ -248,27 +223,29 @@ body {
 
     position: absolute;
 
-    font-size: 34px;
+    font-size: 35px;
 
     z-index: 30;
 
-    animation:
-    coinSpin 1s linear infinite;
+    animation: coinSpin 1s linear infinite;
 }
 
 .coin1 {
-    left: 25%;
-    bottom: 225px;
+
+    left: 27%;
+    bottom: 245px;
 }
 
 .coin2 {
-    left: 53%;
-    bottom: 320px;
+
+    left: 55%;
+    bottom: 335px;
 }
 
 .coin3 {
+
     left: 81%;
-    bottom: 225px;
+    bottom: 245px;
 }
 
 @keyframes coinSpin {
@@ -280,33 +257,6 @@ body {
     to {
         transform: rotateY(360deg);
     }
-
-}
-
-
-/* =========================
-   PAPAN SOAL
-========================= */
-
-.questionMarker {
-
-    position: absolute;
-
-    font-size: 42px;
-
-    z-index: 40;
-}
-
-.marker1 {
-
-    left: 40%;
-    bottom: 90px;
-}
-
-.marker2 {
-
-    left: 67%;
-    bottom: 90px;
 }
 
 
@@ -319,7 +269,7 @@ body {
     position: absolute;
 
     right: 15px;
-    bottom: 90px;
+    bottom: 100px;
 
     font-size: 50px;
 
@@ -339,11 +289,11 @@ body {
     bottom: 0;
 
     width: 100%;
-    height: 75px;
+    height: 85px;
 
     background: #66a61e;
 
-    border-top: 10px solid #477515;
+    border-top: 12px solid #477515;
 
     z-index: 25;
 }
@@ -358,7 +308,7 @@ body {
     position: absolute;
 
     left: 0;
-    bottom: 5px;
+    bottom: 10px;
 
     width: 100%;
 
@@ -373,52 +323,49 @@ body {
     pointer-events: none;
 }
 
-.control-group {
+.control-left {
+
     display: flex;
+
     gap: 10px;
+
+    pointer-events: auto;
+}
+
+#jumpArea {
+
+    pointer-events: auto;
 }
 
 .control {
 
-    width: 62px;
-    height: 62px;
+    width: 65px;
+    height: 65px;
 
     border: 3px solid #222;
 
-    border-radius: 17px;
+    border-radius: 18px;
 
     background: white;
 
-    font-size: 27px;
+    font-size: 28px;
 
     font-weight: bold;
 
-    box-shadow: 0 4px 0 #555;
-
-    pointer-events: auto;
+    box-shadow: 0 5px 0 #555;
 
     touch-action: none;
+
+    cursor: pointer;
 }
 
 .control:active {
 
-    transform: translateY(4px);
+    transform: translateY(5px);
 
-    box-shadow: none;
+    box-shadow: 0 0 0 #555;
 
     background: #ddd;
-}
-
-
-/* =========================
-   TOMBOL LOMPAT
-========================= */
-
-#jumpBtn {
-
-    width: 85px;
-
-    font-size: 15px;
 }
 
 
@@ -437,8 +384,8 @@ body {
 
     transform: translate(-50%, -50%);
 
-    width: 92%;
-    max-width: 430px;
+    width: 90%;
+    max-width: 420px;
 
     background: white;
 
@@ -446,8 +393,7 @@ body {
 
     border-radius: 20px;
 
-    box-shadow:
-    0 10px 35px rgba(0,0,0,.4);
+    box-shadow: 0 10px 30px rgba(0,0,0,.35);
 
     z-index: 500;
 
@@ -457,15 +403,6 @@ body {
 #questionBox h2 {
 
     margin-top: 0;
-
-    color: #1565c0;
-}
-
-#question {
-
-    font-weight: bold;
-
-    line-height: 1.5;
 }
 
 .answer {
@@ -474,74 +411,26 @@ body {
 
     width: 100%;
 
+    margin: 10px 0;
+
     padding: 13px;
 
-    margin: 9px 0;
+    border: none;
 
-    border: 2px solid #ddd;
+    border-radius: 10px;
 
-    border-radius: 12px;
+    background: #eeeeee;
 
-    background: #f5f5f5;
-
-    font-size: 15px;
+    font-size: 16px;
 
     font-weight: bold;
 
     cursor: pointer;
 }
 
-.answer:active {
+.answer:hover {
 
     background: #ddd;
-}
-
-
-/* =========================
-   HASIL
-========================= */
-
-#resultBox {
-
-    display: none;
-
-    position: absolute;
-
-    top: 50%;
-    left: 50%;
-
-    transform: translate(-50%, -50%);
-
-    width: 90%;
-
-    background: white;
-
-    padding: 25px;
-
-    border-radius: 20px;
-
-    text-align: center;
-
-    z-index: 600;
-
-    box-shadow: 0 10px 30px rgba(0,0,0,.4);
-}
-
-#restartBtn {
-
-    padding: 13px 25px;
-
-    border: none;
-
-    border-radius: 12px;
-
-    background: #1976d2;
-
-    color: white;
-
-    font-weight: bold;
-
-    font-size: 16px;
 }
 
 
@@ -549,22 +438,23 @@ body {
    MOBILE
 ========================= */
 
-@media(max-width:600px) {
+@media (max-width: 600px) {
 
     #title {
-        font-size: 13px;
+        font-size: 14px;
     }
 
-    #lesson {
-        font-size: 10px;
-        max-width: 75%;
+    #status {
+        font-size: 14px;
     }
 
     .control {
-        width: 60px;
-        height: 60px;
-    }
 
+        width: 62px;
+        height: 62px;
+
+        font-size: 25px;
+    }
 }
 
 </style>
@@ -582,26 +472,19 @@ body {
     <div id="header">
 
         <div id="title">
-            📚 Accounting Jump
+            📚 Accounting Adventure
         </div>
 
         <div id="status">
 
             ⭐ <span id="score">0</span>
 
-            &nbsp;
+            &nbsp;&nbsp;
 
             ❤️ <span id="lives">3</span>
 
         </div>
 
-    </div>
-
-
-    <!-- MATERI -->
-
-    <div id="lesson">
-        📖 Aset • Utang • Modal • Pendapatan • Beban • Laba
     </div>
 
 
@@ -644,11 +527,550 @@ body {
     </div>
 
 
-    <!-- PENANDA SOAL -->
+    <!-- FINISH -->
 
-    <div
-        class="questionMarker marker1">
-        ❓
+    <div id="finish">
+        🏁
     </div>
 
-   
+
+    <!-- PLAYER -->
+
+    <div id="player">
+        🧑‍💼
+    </div>
+
+
+    <!-- TANAH -->
+
+    <div id="ground"></div>
+
+
+    <!-- KONTROL -->
+
+    <div id="controls">
+
+        <div class="control-left">
+
+            <button
+                class="control"
+                id="leftBtn"
+                type="button">
+
+                ◀
+
+            </button>
+
+
+            <button
+                class="control"
+                id="rightBtn"
+                type="button">
+
+                ▶
+
+            </button>
+
+        </div>
+
+
+        <div id="jumpArea">
+
+            <button
+                class="control"
+                id="jumpBtn"
+                type="button">
+
+                ⬆
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- SOAL -->
+
+    <div id="questionBox">
+
+        <h2>
+            🧠 Soal Akuntansi
+        </h2>
+
+        <p id="question"></p>
+
+        <div id="answers"></div>
+
+    </div>
+
+
+</div>
+
+
+
+<script>
+
+/* =====================================================
+   VARIABEL GAME
+===================================================== */
+
+const game =
+    document.getElementById("game");
+
+const player =
+    document.getElementById("player");
+
+const scoreText =
+    document.getElementById("score");
+
+const livesText =
+    document.getElementById("lives");
+
+const finish =
+    document.getElementById("finish");
+
+
+let playerX = 40;
+
+let playerY = 0;
+
+let velocityY = 0;
+
+let score = 0;
+
+let lives = 3;
+
+let gameOver = false;
+
+let questionOpen = false;
+
+
+/* =====================================================
+   FISIKA LOMPAT
+===================================================== */
+
+const gravity = -1500;
+
+const jumpPower = 650;
+
+
+/*
+    true = tombol kiri ditekan
+*/
+
+let movingLeft = false;
+
+let movingRight = false;
+
+
+/* =====================================================
+   AUTO JUMP
+===================================================== */
+
+function autoJump() {
+
+    if (gameOver) return;
+
+    /*
+       Kalau karakter menyentuh tanah,
+       otomatis lompat lagi.
+    */
+
+    if (playerY <= 0) {
+
+        playerY = 0;
+
+        velocityY = jumpPower;
+
+    }
+
+}
+
+
+/* =====================================================
+   GERAK KIRI
+===================================================== */
+
+function moveLeft() {
+
+    if (gameOver) return;
+
+    playerX -= 30;
+
+    if (playerX < 0) {
+
+        playerX = 0;
+
+    }
+
+}
+
+
+/* =====================================================
+   GERAK KANAN
+===================================================== */
+
+function moveRight() {
+
+    if (gameOver) return;
+
+    playerX += 30;
+
+    const maxX =
+        game.clientWidth - 60;
+
+    if (playerX > maxX) {
+
+        playerX = maxX;
+
+    }
+
+}
+
+
+/* =====================================================
+   LOMPAT MANUAL
+===================================================== */
+
+function manualJump() {
+
+    if (gameOver) return;
+
+    /*
+       Tombol lompat juga bisa dipakai
+       untuk melakukan lompatan tambahan
+       ketika karakter sedang di tanah.
+    */
+
+    if (playerY <= 1) {
+
+        velocityY = jumpPower;
+
+    }
+
+}
+
+
+/* =====================================================
+   UPDATE PLAYER
+===================================================== */
+
+function updatePlayer() {
+
+    player.style.left =
+        playerX + "px";
+
+    player.style.bottom =
+        (100 + playerY) + "px";
+
+}
+
+
+/* =====================================================
+   KOIN
+===================================================== */
+
+function checkCoins() {
+
+    const coins =
+        document.querySelectorAll(".coin");
+
+
+    coins.forEach(function(coin) {
+
+        if (coin.style.display === "none") {
+
+            return;
+
+        }
+
+
+        const coinRect =
+            coin.getBoundingClientRect();
+
+        const playerRect =
+            player.getBoundingClientRect();
+
+
+        const distanceX =
+            Math.abs(
+                playerRect.left -
+                coinRect.left
+            );
+
+
+        const distanceY =
+            Math.abs(
+                playerRect.top -
+                coinRect.top
+            );
+
+
+        if (
+            distanceX < 45 &&
+            distanceY < 55
+        ) {
+
+            coin.style.display =
+                "none";
+
+
+            score += 10;
+
+
+            scoreText.textContent =
+                score;
+
+        }
+
+    });
+
+}
+
+
+/* =====================================================
+   FINISH
+===================================================== */
+
+function checkFinish() {
+
+    if (questionOpen) return;
+
+
+    const finishRect =
+        finish.getBoundingClientRect();
+
+    const playerRect =
+        player.getBoundingClientRect();
+
+
+    const distance =
+        Math.abs(
+            playerRect.left -
+            finishRect.left
+        );
+
+
+    if (distance < 45) {
+
+        showQuestion();
+
+    }
+
+}
+
+
+/* =====================================================
+   SOAL AKUNTANSI
+===================================================== */
+
+const questions = [
+
+    {
+        question:
+        "Kas termasuk ke dalam kelompok apa?",
+
+        answers: [
+            "A. Aset",
+            "B. Beban",
+            "C. Utang"
+        ],
+
+        correct: 0
+    },
+
+
+    {
+        question:
+        "Persamaan dasar akuntansi yang benar adalah?",
+
+        answers: [
+            "A. Aset = Utang + Modal",
+            "B. Aset = Pendapatan + Beban",
+            "C. Modal = Aset + Utang"
+        ],
+
+        correct: 0
+    },
+
+
+    {
+        question:
+        "Pendapatan Rp500.000 dan beban Rp300.000. Berapa laba?",
+
+        answers: [
+            "A. Rp100.000",
+            "B. Rp200.000",
+            "C. Rp800.000"
+        ],
+
+        correct: 1
+    },
+
+
+    {
+        question:
+        "Pembayaran listrik perusahaan termasuk?",
+
+        answers: [
+            "A. Aset",
+            "B. Modal",
+            "C. Beban"
+        ],
+
+        correct: 2
+    },
+
+
+    {
+        question:
+        "Pemilik menyetor uang ke perusahaan. Apa yang bertambah?",
+
+        answers: [
+            "A. Modal",
+            "B. Beban",
+            "C. Kerugian"
+        ],
+
+        correct: 0
+    }
+
+];
+
+
+/* =====================================================
+   TAMPILKAN SOAL
+===================================================== */
+
+function showQuestion() {
+
+    questionOpen = true;
+
+
+    const questionBox =
+        document.getElementById(
+            "questionBox"
+        );
+
+
+    const questionText =
+        document.getElementById(
+            "question"
+        );
+
+
+    const answers =
+        document.getElementById(
+            "answers"
+        );
+
+
+    const random =
+        Math.floor(
+            Math.random() *
+            questions.length
+        );
+
+
+    const q =
+        questions[random];
+
+
+    questionText.textContent =
+        q.question;
+
+
+    answers.innerHTML = "";
+
+
+    q.answers.forEach(
+        function(answer, index) {
+
+            const button =
+                document.createElement(
+                    "button"
+                );
+
+
+            button.className =
+                "answer";
+
+
+            button.textContent =
+                answer;
+
+
+            button.addEventListener(
+                "click",
+                function() {
+
+                    checkAnswer(
+                        index,
+                        q.correct
+                    );
+
+                }
+            );
+
+
+            answers.appendChild(
+                button
+            );
+
+        }
+    );
+
+
+    questionBox.style.display =
+        "block";
+
+}
+
+
+/* =====================================================
+   CEK JAWABAN
+===================================================== */
+
+function checkAnswer(
+    answer,
+    correct
+) {
+
+    const questionBox =
+        document.getElementById(
+            "questionBox"
+        );
+
+
+    if (answer === correct) {
+
+        score += 50;
+
+
+        scoreText.textContent =
+            score;
+
+
+        alert(
+            "🎉 BENAR!\n\n+50 Poin!"
+        );
+
+
+    } else {
+
+        lives--;
+
+
+        livesText.textContent =
+            lives;
+
+
+        alert(
+            "❌ Jawaban belum tepat."
+        );
+
+
+        if (lives <= 0) {
+
+           
