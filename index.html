@@ -1073,4 +1073,102 @@ function checkAnswer(
 
         if (lives <= 0) {
 
-           
+            alert(
+                "💔 Game Over!"
+            );
+
+
+            location.reload();
+
+            return;
+
+        }
+
+    }
+
+
+    questionOpen = false;
+
+
+    questionBox.style.display =
+        "none";
+
+}
+
+
+/* =====================================================
+   GAME LOOP
+===================================================== */
+
+let lastTime =
+    performance.now();
+
+
+function gameLoop(currentTime) {
+
+    const delta =
+        Math.min(
+            (currentTime - lastTime) / 1000,
+            0.03
+        );
+
+
+    lastTime =
+        currentTime;
+
+
+    if (!gameOver) {
+
+
+        /*
+           GERAK KIRI / KANAN
+        */
+
+        if (movingLeft) {
+
+            playerX -=
+                180 * delta;
+
+        }
+
+
+        if (movingRight) {
+
+            playerX +=
+                180 * delta;
+
+        }
+
+
+        /*
+           BATAS LAYAR
+        */
+
+        const maxX =
+            game.clientWidth - 60;
+
+
+        if (playerX < 0) {
+
+            playerX = 0;
+
+        }
+
+
+        if (playerX > maxX) {
+
+            playerX = maxX;
+
+        }
+
+
+        /*
+           GRAVITASI
+        */
+
+        velocityY +=
+            gravity * delta;
+
+
+        playerY +=
+            velocity
