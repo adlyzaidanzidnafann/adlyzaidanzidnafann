@@ -2,9 +2,9 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Login - Biodata Adly</title>
+    <title>Adly Adventure</title>
 
     <!-- Bootstrap CDN -->
     <link
@@ -13,250 +13,301 @@
     >
 
     <style>
+        * {
+            box-sizing: border-box;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
         body {
-            background: linear-gradient(135deg, #0d6efd, #6f42c1);
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            margin: 0;
+            background: #111;
             font-family: Arial, sans-serif;
+            overflow: hidden;
         }
 
-        .login-card {
+        #gameContainer {
             width: 100%;
-            max-width: 400px;
-            background: white;
-            padding: 30px;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-        }
-
-        .logo {
-            width: 75px;
-            height: 75px;
-            background: #0d6efd;
-            color: white;
-            border-radius: 50%;
+            height: 100vh;
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 20px;
-            font-size: 30px;
+        }
+
+        #game {
+            width: 100%;
+            max-width: 900px;
+            height: 65vh;
+            min-height: 400px;
+            display: block;
+            background: #79d7ff;
+            border: 4px solid white;
+            border-radius: 12px;
+        }
+
+        #info {
+            width: 100%;
+            max-width: 900px;
+            display: flex;
+            justify-content: space-between;
+            color: white;
+            padding: 8px 12px;
+            font-size: 18px;
             font-weight: bold;
         }
 
-        .biodata-card {
+        #controls {
             width: 100%;
             max-width: 500px;
-            background: white;
-            padding: 30px;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-        }
-
-        .foto-profil {
-            width: 140px;
-            height: 140px;
-            object-fit: cover;
-            border-radius: 50%;
-            border: 4px solid #0d6efd;
-        }
-
-        .biodata-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             padding: 12px;
-            border-bottom: 1px solid #eee;
+        }
+
+        .control-group {
+            display: flex;
+            gap: 12px;
+        }
+
+        .game-btn {
+            width: 65px;
+            height: 65px;
+            border: none;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.9);
+            font-size: 28px;
+            font-weight: bold;
+            box-shadow: 0 4px 10px rgba(0,0,0,.4);
+            touch-action: none;
+        }
+
+        .game-btn:active {
+            transform: scale(.9);
+        }
+
+        #restart {
+            position: absolute;
+            display: none;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 10px;
+            background: #ffcc00;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        @media (max-width: 600px) {
+            #game {
+                height: 55vh;
+                min-height: 350px;
+                border-radius: 0;
+                border-left: none;
+                border-right: none;
+            }
+
+            #info {
+                font-size: 15px;
+            }
+
+            .game-btn {
+                width: 60px;
+                height: 60px;
+            }
         }
     </style>
 </head>
 
 <body>
 
-<!-- ================= LOGIN ================= -->
-<div class="login-card" id="loginPage">
+<div id="gameContainer">
 
-    <div class="logo">
-        A
+    <div id="info">
+        <span>⭐ Skor: <span id="score">0</span></span>
+        <span>❤️ Nyawa: <span id="lives">3</span></span>
     </div>
 
-    <h3 class="text-center fw-bold mb-2">
-        Selamat Datang
-    </h3>
+    <canvas id="game"></canvas>
 
-    <p class="text-center text-muted mb-4">
-        Silakan login untuk melihat biodata
-    </p>
-
-    <form onsubmit="login(event)">
-
-        <!-- Email -->
-        <div class="mb-3">
-            <label class="form-label fw-bold">
-                Email
-            </label>
-
-            <input
-                type="email"
-                id="email"
-                class="form-control form-control-lg"
-                placeholder="nama@gmail.com"
-                required
-            >
-        </div>
-
-        <!-- Password -->
-        <div class="mb-3">
-            <label class="form-label fw-bold">
-                Password
-            </label>
-
-            <input
-                type="password"
-                id="password"
-                class="form-control form-control-lg"
-                placeholder="Masukkan password"
-                required
-            >
-        </div>
-
-        <!-- Remember -->
-        <div class="form-check mb-3">
-            <input
-                class="form-check-input"
-                type="checkbox"
-                id="remember"
-            >
-
-            <label class="form-check-label">
-                Ingat saya
-            </label>
-        </div>
-
-        <!-- Tombol Login -->
-        <button
-            type="submit"
-            class="btn btn-primary btn-lg w-100"
-        >
-            Login
-        </button>
-
-        <p
-            id="errorMessage"
-            class="text-danger text-center mt-3 mb-0"
-        ></p>
-
-    </form>
-
-</div>
-
-
-<!-- ================= BIODATA ================= -->
-<div class="biodata-card text-center d-none" id="biodataPage">
-
-    <h2 class="fw-bold text-primary mb-4">
-        Biodata Saya
-    </h2>
-
-    <!--
-    Jika mempunyai foto, upload foto ke GitHub
-    dan ubah nama file di bagian src.
-    -->
-
-    <img
-        src="1001048355.jpg"
-        alt="Foto Adly Zaidan Zidna Fann"
-        class="foto-profil mb-4"
-    >
-
-    <h3 class="fw-bold">
-        Adly Zaidan Zidna Fann
-    </h3>
-
-    <p class="text-muted">
-        Mahasiswa
-    </p>
-
-    <hr>
-
-    <div class="text-start">
-
-        <div class="biodata-item">
-            <strong>Nama</strong><br>
-            Adly Zaidan Zidna Fann
-        </div>
-
-        <div class="biodata-item">
-            <strong>Program Studi</strong><br>
-            Komputerisasi Akuntansi
-        </div>
-
-        <div class="biodata-item">
-            <strong>Semester</strong><br>
-            1
-        </div>
-
-    </div>
-
-    <button
-        onclick="logout()"
-        class="btn btn-outline-danger w-100 mt-4"
-    >
-        Logout
+    <button id="restart" onclick="restartGame()">
+        🔄 Main Lagi
     </button>
 
+    <div id="controls">
+
+        <div class="control-group">
+            <button class="game-btn" id="left">◀</button>
+            <button class="game-btn" id="right">▶</button>
+        </div>
+
+        <button class="game-btn" id="jump">
+            ▲
+        </button>
+
+    </div>
+
 </div>
 
 
-<!-- ================= JAVASCRIPT ================= -->
 <script>
 
-function login(event) {
+const canvas = document.getElementById("game");
+const ctx = canvas.getContext("2d");
 
-    event.preventDefault();
+function resizeCanvas() {
+    canvas.width = canvas.clientWidth;
+    canvas.height = canvas.clientHeight;
+}
 
-    const email = document.getElementById("email").value;
-    const password = document.getElementById("password").value;
+resizeCanvas();
+window.addEventListener("resize", resizeCanvas);
 
-    /*
-       LOGIN DEMO
 
-       Email:
-       adly@gmail.com
+// ================= GAME =================
 
-       Password:
-       123456
-    */
+let score = 0;
+let lives = 3;
+let gameOver = false;
 
-    if (email === "adly@gmail.com" && password === "123456") {
+const keys = {
+    left: false,
+    right: false,
+    jump: false
+};
 
-        document.getElementById("loginPage")
-            .classList.add("d-none");
 
-        document.getElementById("biodataPage")
-            .classList.remove("d-none");
+// ================= PLAYER =================
 
-    } else {
+const player = {
+    x: 80,
+    y: 100,
+    width: 32,
+    height: 42,
+    velocityX: 0,
+    velocityY: 0,
+    speed: 5,
+    jumpPower: 12,
+    grounded: false
+};
 
-        document.getElementById("errorMessage").innerText =
-            "Email atau password salah.";
 
+// ================= PLATFORM =================
+
+let platforms = [];
+
+function createPlatforms() {
+
+    platforms = [
+
+        {
+            x: 0,
+            y: canvas.height - 50,
+            width: canvas.width,
+            height: 50
+        },
+
+        {
+            x: 180,
+            y: canvas.height - 140,
+            width: 130,
+            height: 20
+        },
+
+        {
+            x: 400,
+            y: canvas.height - 220,
+            width: 140,
+            height: 20
+        },
+
+        {
+            x: 650,
+            y: canvas.height - 150,
+            width: 140,
+            height: 20
+        }
+    ];
+}
+
+createPlatforms();
+
+
+// ================= COINS =================
+
+let coins = [
+    {x: 220, y: canvas.height - 180, collected: false},
+    {x: 440, y: canvas.height - 260, collected: false},
+    {x: 700, y: canvas.height - 190, collected: false}
+];
+
+
+// ================= ENEMY =================
+
+const enemy = {
+    x: 500,
+    y: canvas.height - 90,
+    width: 35,
+    height: 35,
+    speed: 2,
+    direction: 1
+};
+
+
+// ================= CONTROLS =================
+
+function pressButton(button, key) {
+
+    button.addEventListener("touchstart", function(e) {
+        e.preventDefault();
+        keys[key] = true;
+    });
+
+    button.addEventListener("touchend", function(e) {
+        e.preventDefault();
+        keys[key] = false;
+    });
+
+    button.addEventListener("mousedown", function() {
+        keys[key] = true;
+    });
+
+    button.addEventListener("mouseup", function() {
+        keys[key] = false;
+    });
+
+    button.addEventListener("mouseleave", function() {
+        keys[key] = false;
+    });
+}
+
+pressButton(document.getElementById("left"), "left");
+pressButton(document.getElementById("right"), "right");
+pressButton(document.getElementById("jump"), "jump");
+
+
+// ================= KEYBOARD =================
+
+document.addEventListener("keydown", function(e) {
+
+    if (e.key === "ArrowLeft" || e.key === "a") {
+        keys.left = true;
     }
-}
 
+    if (e.key === "ArrowRight" || e.key === "d") {
+        keys.right = true;
+    }
 
-function logout() {
+    if (
+        e.key === "ArrowUp" ||
+        e.key === "w" ||
+        e.key === " "
+    ) {
+        keys.jump = true;
+    }
 
-    document.getElementById("biodataPage")
-        .classList.add("d-none");
+});
 
-    document.getElementById("loginPage")
-        .classList.remove("d-none");
+document.addEventListener("keyup", function(e) {
 
-    document.getElementById("email").value = "";
-    document.getElementById("password").value = "";
-
-}
-
-</script>
-
-</body>
-</html>
+    if (e.key === "ArrowLeft"
