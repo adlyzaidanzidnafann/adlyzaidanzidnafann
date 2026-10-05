@@ -1,405 +1,262 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Login - Biodata Adly</title>
+
+    <!-- Bootstrap CDN -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
+
+    <style>
+        body {
+            background: linear-gradient(135deg, #0d6efd, #6f42c1);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: Arial, sans-serif;
+        }
+
+        .login-card {
+            width: 100%;
+            max-width: 400px;
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .logo {
+            width: 75px;
+            height: 75px;
+            background: #0d6efd;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 30px;
+            font-weight: bold;
+        }
+
+        .biodata-card {
+            width: 100%;
+            max-width: 500px;
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .foto-profil {
+            width: 140px;
+            height: 140px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 4px solid #0d6efd;
+        }
+
+        .biodata-item {
+            padding: 12px;
+            border-bottom: 1px solid #eee;
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- ================= LOGIN ================= -->
+<div class="login-card" id="loginPage">
+
+    <div class="logo">
+        A
+    </div>
+
+    <h3 class="text-center fw-bold mb-2">
+        Selamat Datang
+    </h3>
+
+    <p class="text-center text-muted mb-4">
+        Silakan login untuk melihat biodata
+    </p>
+
+    <form onsubmit="login(event)">
+
+        <!-- Email -->
+        <div class="mb-3">
+            <label class="form-label fw-bold">
+                Email
+            </label>
+
+            <input
+                type="email"
+                id="email"
+                class="form-control form-control-lg"
+                placeholder="nama@gmail.com"
+                required
+            >
+        </div>
+
+        <!-- Password -->
+        <div class="mb-3">
+            <label class="form-label fw-bold">
+                Password
+            </label>
+
+            <input
+                type="password"
+                id="password"
+                class="form-control form-control-lg"
+                placeholder="Masukkan password"
+                required
+            >
+        </div>
 
-<meta charset="UTF-8">
+        <!-- Remember -->
+        <div class="form-check mb-3">
+            <input
+                class="form-check-input"
+                type="checkbox"
+                id="remember"
+            >
 
-<meta name="viewport"
-content="width=device-width,
-initial-scale=1.0,
-maximum-scale=1.0,
-user-scalable=no">
+            <label class="form-check-label">
+                Ingat saya
+            </label>
+        </div>
 
-<title>Accounting Adventure</title>
+        <!-- Tombol Login -->
+        <button
+            type="submit"
+            class="btn btn-primary btn-lg w-100"
+        >
+            Login
+        </button>
 
-<style>
+        <p
+            id="errorMessage"
+            class="text-danger text-center mt-3 mb-0"
+        ></p>
 
-*{
-    box-sizing:border-box;
-    -webkit-tap-highlight-color:transparent;
-}
+    </form>
 
-html,body{
-    margin:0;
-    padding:0;
-    width:100%;
-    height:100%;
-    overflow:hidden;
-    font-family:Arial,sans-serif;
-}
+</div>
 
-body{
-    background:#75ccef;
-}
 
+<!-- ================= BIODATA ================= -->
+<div class="biodata-card text-center d-none" id="biodataPage">
 
-/* =========================
-   GAME
-========================= */
+    <h2 class="fw-bold text-primary mb-4">
+        Biodata Saya
+    </h2>
 
-#game{
-    position:relative;
-    width:100%;
-    height:100dvh;
-    overflow:hidden;
+    <!--
+    Jika mempunyai foto, upload foto ke GitHub
+    dan ubah nama file di bagian src.
+    -->
 
-    background:
-    linear-gradient(
-        #55c7f2 0%,
-        #c8f0ff 65%,
-        #83c441 65%,
-        #83c441 100%
-    );
+    <img
+        src="1001048355.jpg"
+        alt="Foto Adly Zaidan Zidna Fann"
+        class="foto-profil mb-4"
+    >
 
-    touch-action:none;
-}
+    <h3 class="fw-bold">
+        Adly Zaidan Zidna Fann
+    </h3>
 
+    <p class="text-muted">
+        Mahasiswa
+    </p>
 
-/* =========================
-   HEADER
-========================= */
+    <hr>
 
-#header{
-    position:absolute;
-    top:0;
-    left:0;
+    <div class="text-start">
 
-    width:100%;
-    height:52px;
+        <div class="biodata-item">
+            <strong>Nama</strong><br>
+            Adly Zaidan Zidna Fann
+        </div>
 
-    background:white;
+        <div class="biodata-item">
+            <strong>Program Studi</strong><br>
+            Komputerisasi Akuntansi
+        </div>
 
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
+        <div class="biodata-item">
+            <strong>Semester</strong><br>
+            1
+        </div>
 
-    padding:0 12px;
+    </div>
 
-    z-index:1000;
+    <button
+        onclick="logout()"
+        class="btn btn-outline-danger w-100 mt-4"
+    >
+        Logout
+    </button>
 
-    box-shadow:0 2px 5px rgba(0,0,0,.25);
-}
+</div>
 
-#title{
-    font-size:13px;
-    font-weight:bold;
-}
 
-#status{
-    font-size:13px;
-    font-weight:bold;
-}
+<!-- ================= JAVASCRIPT ================= -->
+<script>
 
+function login(event) {
 
-/* =========================
-   LANGIT
-========================= */
+    event.preventDefault();
 
-.sun{
-    position:absolute;
-    top:70px;
-    right:20px;
-    font-size:50px;
-}
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
 
-.cloud{
-    position:absolute;
-    font-size:45px;
-    opacity:.85;
-}
+    /*
+       LOGIN DEMO
 
-.cloud1{
-    top:90px;
-    left:20px;
-}
+       Email:
+       adly@gmail.com
 
-.cloud2{
-    top:160px;
-    right:80px;
-}
+       Password:
+       123456
+    */
 
+    if (email === "adly@gmail.com" && password === "123456") {
 
-/* =========================
-   MATERI
-========================= */
+        document.getElementById("loginPage")
+            .classList.add("d-none");
 
-#lesson{
-    position:absolute;
+        document.getElementById("biodataPage")
+            .classList.remove("d-none");
 
-    top:65px;
-    left:50%;
+    } else {
 
-    transform:translateX(-50%);
+        document.getElementById("errorMessage").innerText =
+            "Email atau password salah.";
 
-    background:rgba(255,255,255,.9);
-
-    padding:6px 10px;
-
-    border-radius:20px;
-
-    font-size:10px;
-    font-weight:bold;
-
-    z-index:100;
-    white-space:nowrap;
-}
-
-
-/* =========================
-   PLAYER
-========================= */
-
-#player{
-    position:absolute;
-
-    width:48px;
-    height:54px;
-
-    left:30px;
-    bottom:90px;
-
-    background:#e53935;
-
-    border:3px solid #8e1b1b;
-
-    border-radius:12px;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    font-size:29px;
-
-    z-index:500;
-
-    will-change:left,bottom;
-}
-
-
-/* =========================
-   TANAH
-========================= */
-
-#ground{
-    position:absolute;
-
-    left:0;
-    bottom:0;
-
-    width:100%;
-    height:75px;
-
-    background:#70ad28;
-
-    border-top:9px solid #4c7818;
-
-    z-index:300;
-}
-
-
-/* =========================
-   PLATFORM
-========================= */
-
-.platform{
-    position:absolute;
-
-    height:16px;
-
-    background:#795548;
-
-    border:3px solid #4e342e;
-
-    border-radius:8px;
-
-    z-index:350;
-}
-
-.platform1{
-    left:20%;
-    bottom:170px;
-    width:110px;
-}
-
-.platform2{
-    left:50%;
-    bottom:260px;
-    width:110px;
-}
-
-.platform3{
-    left:78%;
-    bottom:170px;
-    width:105px;
-}
-
-
-/* =========================
-   KOIN
-========================= */
-
-.coin{
-    position:absolute;
-
-    font-size:30px;
-
-    z-index:450;
-
-    animation:spin 1s linear infinite;
-}
-
-.coin1{
-    left:25%;
-    bottom:205px;
-}
-
-.coin2{
-    left:53%;
-    bottom:300px;
-}
-
-.coin3{
-    left:80%;
-    bottom:205px;
-}
-
-@keyframes spin{
-
-    from{
-        transform:rotateY(0);
     }
-
-    to{
-        transform:rotateY(360deg);
-    }
-
 }
 
 
-/* =========================
-   TANDA SOAL
-========================= */
+function logout() {
 
-.question{
-    position:absolute;
+    document.getElementById("biodataPage")
+        .classList.add("d-none");
 
-    font-size:35px;
+    document.getElementById("loginPage")
+        .classList.remove("d-none");
 
-    z-index:450;
+    document.getElementById("email").value = "";
+    document.getElementById("password").value = "";
+
 }
 
-.q1{
-    left:40%;
-    bottom:85px;
-}
+</script>
 
-.q2{
-    left:65%;
-    bottom:85px;
-}
-
-
-/* =========================
-   FINISH
-========================= */
-
-#finish{
-    position:absolute;
-
-    right:12px;
-    bottom:85px;
-
-    font-size:45px;
-
-    z-index:450;
-}
-
-
-/* =========================
-   KONTROL HP
-========================= */
-
-#controls{
-    position:absolute;
-
-    left:0;
-    bottom:8px;
-
-    width:100%;
-
-    height:70px;
-
-    padding:0 12px;
-
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-
-    z-index:2000;
-
-    pointer-events:none;
-}
-
-.controlGroup{
-    display:flex;
-    gap:10px;
-
-    pointer-events:auto;
-}
-
-.control{
-    width:62px;
-    height:62px;
-
-    border:3px solid #222;
-
-    border-radius:16px;
-
-    background:#ffffff;
-
-    color:#111;
-
-    font-size:26px;
-    font-weight:bold;
-
-    box-shadow:0 4px 0 #555;
-
-    pointer-events:auto;
-
-    touch-action:none;
-
-    user-select:none;
-}
-
-.control:active{
-    transform:translateY(4px);
-    box-shadow:none;
-    background:#ddd;
-}
-
-#jumpBtn{
-    width:90px;
-    font-size:14px;
-}
-
-
-/* =========================
-   SOAL
-========================= */
-
-#questionBox{
-    display:none;
-
-    position:absolute;
-
-    top:50%;
-    left:50%;
-
-    transform:translate(-50%,-50%);
-
-    width:90%;
-    max-width:400px;
-
-    background:white;
-
-    padding:20px
+</body>
+</html>
