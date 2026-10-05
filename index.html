@@ -2,101 +2,261 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Biodata Adly Zaidan Zidna Fann</title>
+    <title>Login - Biodata Adly</title>
 
     <!-- Bootstrap CDN -->
-    <link 
-        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" 
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
         rel="stylesheet"
     >
+
+    <style>
+        body {
+            background: linear-gradient(135deg, #0d6efd, #6f42c1);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: Arial, sans-serif;
+        }
+
+        .login-card {
+            width: 100%;
+            max-width: 400px;
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .logo {
+            width: 75px;
+            height: 75px;
+            background: #0d6efd;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 30px;
+            font-weight: bold;
+        }
+
+        .biodata-card {
+            width: 100%;
+            max-width: 500px;
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .foto-profil {
+            width: 140px;
+            height: 140px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 4px solid #0d6efd;
+        }
+
+        .biodata-item {
+            padding: 12px;
+            border-bottom: 1px solid #eee;
+        }
+    </style>
 </head>
 
-<body class="bg-light">
+<body>
 
-    <div class="container py-5">
-        <div class="row justify-content-center">
-            <div class="col-12 col-md-6 col-lg-5">
+<!-- ================= LOGIN ================= -->
+<div class="login-card" id="loginPage">
 
-                <!-- Card Biodata -->
-                <div class="card shadow border-0 rounded-4">
-
-                    <div class="card-body text-center p-4">
-
-                        <!-- Foto -->
-                        <div class="mb-3">
-                            <div 
-                                class="bg-primary text-white rounded-circle mx-auto d-flex align-items-center justify-content-center"
-                                style="width: 100px; height: 100px; font-size: 40px;"
-                            >
-                                A
-                            </div>
-                        </div>
-
-                        <!-- Nama -->
-                        <h2 class="fw-bold mb-1">
-                            Adly Zaidan Zidna Fann
-                        </h2>
-
-                        <p class="text-muted mb-4">
-                            Mahasiswa
-                        </p>
-
-                        <!-- Biodata -->
-                        <div class="text-start">
-
-                            <div class="mb-3">
-                                <small class="text-muted">Nama Lengkap</small>
-                                <div class="fw-semibold">
-                                    Adly Zaidan Zidna Fann
-                                </div>
-                            </div>
-
-                            <div class="mb-3">
-                                <small class="text-muted">Program Studi</small>
-                                <div class="fw-semibold">
-                                    Komputerisasi Akuntansi
-                                </div>
-                            </div>
-
-                            <div class="mb-3">
-                                <small class="text-muted">Semester</small>
-                                <div class="fw-semibold">
-                                    Semester 1
-                                </div>
-                            </div>
-
-                            <div class="mb-3">
-                                <small class="text-muted">Fakultas</small>
-                                <div class="fw-semibold">
-                                    Fakultas Komputer
-                                </div>
-                            </div>
-
-                        </div>
-
-                        <!-- Tombol -->
-                        <button class="btn btn-primary w-100 rounded-pill mt-3">
-                            Tentang Saya
-                        </button>
-
-                    </div>
-                </div>
-
-                <!-- Footer -->
-                <p class="text-center text-muted mt-4 small">
-                    © 2026 Adly Zaidan Zidna Fann
-                </p>
-
-            </div>
-        </div>
+    <div class="logo">
+        A
     </div>
 
-    <!-- Bootstrap JS CDN -->
-    <script 
-        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
-    </script>
+    <h3 class="text-center fw-bold mb-2">
+        Selamat Datang
+    </h3>
+
+    <p class="text-center text-muted mb-4">
+        Silakan login untuk melihat biodata
+    </p>
+
+    <form onsubmit="login(event)">
+
+        <!-- Email -->
+        <div class="mb-3">
+            <label class="form-label fw-bold">
+                Email
+            </label>
+
+            <input
+                type="email"
+                id="email"
+                class="form-control form-control-lg"
+                placeholder="nama@gmail.com"
+                required
+            >
+        </div>
+
+        <!-- Password -->
+        <div class="mb-3">
+            <label class="form-label fw-bold">
+                Password
+            </label>
+
+            <input
+                type="password"
+                id="password"
+                class="form-control form-control-lg"
+                placeholder="Masukkan password"
+                required
+            >
+        </div>
+
+        <!-- Remember -->
+        <div class="form-check mb-3">
+            <input
+                class="form-check-input"
+                type="checkbox"
+                id="remember"
+            >
+
+            <label class="form-check-label">
+                Ingat saya
+            </label>
+        </div>
+
+        <!-- Tombol Login -->
+        <button
+            type="submit"
+            class="btn btn-primary btn-lg w-100"
+        >
+            Login
+        </button>
+
+        <p
+            id="errorMessage"
+            class="text-danger text-center mt-3 mb-0"
+        ></p>
+
+    </form>
+
+</div>
+
+
+<!-- ================= BIODATA ================= -->
+<div class="biodata-card text-center d-none" id="biodataPage">
+
+    <h2 class="fw-bold text-primary mb-4">
+        Biodata Saya
+    </h2>
+
+    <!--
+    Jika mempunyai foto, upload foto ke GitHub
+    dan ubah nama file di bagian src.
+    -->
+
+    <img
+        src="1001048355.jpg"
+        alt="Foto Adly Zaidan Zidna Fann"
+        class="foto-profil mb-4"
+    >
+
+    <h3 class="fw-bold">
+        Adly Zaidan Zidna Fann
+    </h3>
+
+    <p class="text-muted">
+        Mahasiswa
+    </p>
+
+    <hr>
+
+    <div class="text-start">
+
+        <div class="biodata-item">
+            <strong>Nama</strong><br>
+            Adly Zaidan Zidna Fann
+        </div>
+
+        <div class="biodata-item">
+            <strong>Program Studi</strong><br>
+            Komputerisasi Akuntansi
+        </div>
+
+        <div class="biodata-item">
+            <strong>Semester</strong><br>
+            1
+        </div>
+
+    </div>
+
+    <button
+        onclick="logout()"
+        class="btn btn-outline-danger w-100 mt-4"
+    >
+        Logout
+    </button>
+
+</div>
+
+
+<!-- ================= JAVASCRIPT ================= -->
+<script>
+
+function login(event) {
+
+    event.preventDefault();
+
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+
+    /*
+       LOGIN DEMO
+
+       Email:
+       adly@gmail.com
+
+       Password:
+       123456
+    */
+
+    if (email === "adly@gmail.com" && password === "123456") {
+
+        document.getElementById("loginPage")
+            .classList.add("d-none");
+
+        document.getElementById("biodataPage")
+            .classList.remove("d-none");
+
+    } else {
+
+        document.getElementById("errorMessage").innerText =
+            "Email atau password salah.";
+
+    }
+}
+
+
+function logout() {
+
+    document.getElementById("biodataPage")
+        .classList.add("d-none");
+
+    document.getElementById("loginPage")
+        .classList.remove("d-none");
+
+    document.getElementById("email").value = "";
+    document.getElementById("password").value = "";
+
+}
+
+</script>
 
 </body>
 </html>
